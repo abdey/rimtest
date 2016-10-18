@@ -1,0 +1,13 @@
+{
+  "name": "rimtest-frontend",
+  "version": "1.0.0",
+  "description": "riminder test",
+  "main": "index.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "engines": {
+    "node": ">=0.12.7"
+  }
+
+}
