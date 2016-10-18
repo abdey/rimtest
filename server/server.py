@@ -19,6 +19,9 @@ CORS(app)
 
 auth_token = None
 
+@app.route("/proxytest", methods=["GET"])
+def proxyTest():
+    return jsonify({"status": "success"})
 
 @app.route("/login", methods=["POST"])
 def login():
