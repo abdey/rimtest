@@ -40,6 +40,11 @@ body {
     font-size: 2rem;
 
 }
+.form-signin label.error {
+    font-size: 1rem;
+    color: #ca7777;
+}
+
 .form-signin input[type="text"]
 {
     margin-bottom: -1px;

@@ -1,27 +1,60 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { connect } from 'react-redux'
+import * as allActions from '../actions'
 
-export default class LoginForm extends React.Component {
-  render() {
-    return (
-      <div className="container">
-          <div className="row">
-              <div className="col-xs-12 col-md-6 col-md-offset-3">
-                  <div className="form-container">
-                      <form className="form-signin">
-                        <label> Login </label>
-                        <input type="text" className="form-control" placeholder="Email" />
-                        <input type="password" className="form-control" placeholder="Password" />
-                        <button className="btn btn-lg btn-primary btn-block" type="submit">
-                            Login
-                        </button>
-                        <span className="clearfix"></span>
-                      </form>
-                  </div>
-              </div>
-          </div>
-      </div>
+const LoginForm = ( { errorMessage, user , submitUserForLogin, pushToProfilePage} ) => {
 
-    )
+  if(user.token && updatedAt) {
+    pushToProfilePage()
+    return null
   }
+
+  let formUser = { name : null, password : null};
+
+
+  return (
+    <div className="container">
+        <div className="row">
+            <div className="col-xs-12 col-md-6 col-md-offset-3">
+                <div className="form-container">
+                    <form className="form-signin" onSubmit={(evt)=>{ evt.preventDefault(); submitUserForLogin(formUser) } }>
+                      <label> Login </label>
+                      <label className="error">{errorMessage}</label>
+                      <input type="text" className="form-control" placeholder="User Name" onChange={ (evt)=>{ formUser.name = evt.target.value } } />
+                      <input type="password" className="form-control" placeholder="Password" onChange={ (evt)=>{ formUser.name = evt.target.value } }/>
+                      <button className="btn btn-lg btn-primary btn-block" type="submit">
+                          Login
+                      </button>
+                      <span className="clearfix"></span>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+  )
 }
+
+
+const mapStateToProps = (state) => ({
+  errorMessage : state.app.loginRequest.message,
+  user: state.app.user
+})
+
+const mapDispatchToProps = (dispatch) => ({
+    submitUserForLogin: (user) => {
+      if(user.name && user.password)
+        dispatch(allActions.loginFormSubmit(user))
+      else
+        dispatch(allActions.loginError({message : "You need to fill all fields please"}))
+    },
+    pushToProfilePage: () => {
+      dispatch(push('/profile'))
+    }
+})
+
+const LoginFormContainer = connect(
+  mapStateToProps, mapDispatchToProps
+)(LoginForm);
+
+
+export default LoginFormContainer
