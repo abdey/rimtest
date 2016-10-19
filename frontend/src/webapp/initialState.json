@@ -1,0 +1,18 @@
+{
+  "app" : {
+    "updatedAt" : 0,
+    "user" : {
+      "token" : null,
+      "name" : null,
+      "firstname" : null
+    },
+    "loginRequest" : {
+      "status" : null,
+      "isFetching" : false,
+      "message" : null
+    },
+    "dataRequest" : {
+      "data" : null
+    }
+  }
+}
