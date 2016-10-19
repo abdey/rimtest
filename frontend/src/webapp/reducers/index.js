@@ -14,6 +14,12 @@ export default function webAppReducer(state = initialState, action){
     case "LOGIN_TOKEN_RECEIVED":
       newState = Object.assign({}, state, { updatedAt: action.updatedAt || state.updatedAt, user : { name : action.user.name || state.user.name, token : action.user.token || state.user.token } } )
       return newState
+    case "USER_RESET":
+      newState = Object.assign({}, state, { updatedAt: action.updatedAt || state.updatedAt, user : { "token" : null, "name" : null, "firstname" : null } } )
+      return newState
+    case "DATA_RECEIVED":
+      newState = Object.assign({}, state, { dataRequest : { data : action.data || state.data } } )
+      return newState
     default:
       return state
   }

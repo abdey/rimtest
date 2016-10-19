@@ -10,6 +10,9 @@
       "status" : null,
       "isFetching" : false,
       "message" : null
+    },
+    "dataRequest" : {
+      "data" : null
     }
   }
 }

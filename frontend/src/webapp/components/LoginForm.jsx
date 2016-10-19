@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { push } from 'react-router-redux'
 
 import * as allActions from '../actions'
 
@@ -8,7 +7,6 @@ const LoginForm = ( { errorMessage, user , updatedAt, submitUserForLogin, pushTo
 
   if(user.token && updatedAt) {
     pushToProfilePage()
-    return null
   }
 
   let formUser = { name : null, password : null};
@@ -51,7 +49,7 @@ const mapDispatchToProps = (dispatch) => ({
         dispatch(allActions.loginError({message : "You need to fill all fields please"}))
     },
     pushToProfilePage: () => {
-      dispatch(push('/profile'))
+      dispatch(allActions.goToPage('/profile'))
     }
 })
 

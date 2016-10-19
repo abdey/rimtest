@@ -4,6 +4,7 @@ var browserSync = require('browser-sync'),
     gulp = require('gulp'),
     gutil = require('gulp-util'),
     proxyMiddleware = require('http-proxy-middleware'),
+    historyFallback = require('connect-history-api-fallback'),
     source  = require('vinyl-source-stream'),
     babelify = require('babelify'),
     watchify = require('watchify'),
@@ -60,6 +61,7 @@ gulp.task('serve', ['bundle'], function () {
                     ws: true,
                     logLevel: 'debug'
                 }),
+                historyFallback()
             ],
         },
         logLevel: 'debug',

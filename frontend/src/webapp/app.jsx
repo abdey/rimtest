@@ -8,6 +8,7 @@ import initialState from './initialState'
 
 //subComponents
 import LoginForm from './components/LoginForm.jsx'
+import Profile from './components/Profile.jsx'
 
 
 // AppStore
@@ -18,8 +19,9 @@ const unsubscribe = appStore.subscribe( () => console.log(appStore.getState()) )
 
 ReactDOM.render(
   <Provider store={appStore}>
-    <Router history={browserHistory}>
+    <Router history={hashHistory}>
       <Route path='/' component={LoginForm} />
+      <Route path='/profile' component={Profile} />
     </Router>
   </Provider>,
   document.getElementById('webApp')
