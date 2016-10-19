@@ -1,8 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import { push } from 'react-router-redux'
+
 import * as allActions from '../actions'
 
-const LoginForm = ( { errorMessage, user , submitUserForLogin, pushToProfilePage} ) => {
+const LoginForm = ( { errorMessage, user , updatedAt, submitUserForLogin, pushToProfilePage} ) => {
 
   if(user.token && updatedAt) {
     pushToProfilePage()
@@ -21,7 +23,7 @@ const LoginForm = ( { errorMessage, user , submitUserForLogin, pushToProfilePage
                       <label> Login </label>
                       <label className="error">{errorMessage}</label>
                       <input type="text" className="form-control" placeholder="User Name" onChange={ (evt)=>{ formUser.name = evt.target.value } } />
-                      <input type="password" className="form-control" placeholder="Password" onChange={ (evt)=>{ formUser.name = evt.target.value } }/>
+                      <input type="password" className="form-control" placeholder="Password" onChange={ (evt)=>{ formUser.password = evt.target.value } }/>
                       <button className="btn btn-lg btn-primary btn-block" type="submit">
                           Login
                       </button>
@@ -37,7 +39,8 @@ const LoginForm = ( { errorMessage, user , submitUserForLogin, pushToProfilePage
 
 const mapStateToProps = (state) => ({
   errorMessage : state.app.loginRequest.message,
-  user: state.app.user
+  user: state.app.user,
+  updatedAt: state.app.updatedAt
 })
 
 const mapDispatchToProps = (dispatch) => ({
