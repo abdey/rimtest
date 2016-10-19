@@ -9,7 +9,8 @@ var browserSync = require('browser-sync'),
     babelify = require('babelify'),
     watchify = require('watchify'),
     exorcist = require('exorcist'),
-    browserify = require('browserify');
+    browserify = require('browserify'),
+    esLint = require('gulp-eslint');
 
 // Watchify args contains necessary cache options to achieve fast incremental bundles.
 // See watchify readme for details. Adding debug true for source-map generation.
@@ -48,7 +49,16 @@ gulp.task('bundle', function () {
     return bundle();
 });
 
-gulp.task('serve', ['bundle'], function () {
+
+gulp.task('eslint', function () {
+
+  return gulp
+            .src('src/webapp/*.{js,jsx}')
+            .pipe(esLint())
+            .pipe(esLint.format())
+})
+
+gulp.task('serve', ['eslint', 'bundle'], function () {
     browserSync.instance = browserSync.init({
         startPath: '/',
         server: {
