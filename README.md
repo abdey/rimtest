@@ -25,7 +25,13 @@ $> python server.py
 To start development mode:
 
 ```shell
-$> gulp serve
+$> cd frontend && gulp serve
+```
+
+To Check Hint:
+
+```shell
+$> cd frontend && gulp eslint
 ```
 
 ```
